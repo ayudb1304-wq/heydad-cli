@@ -1,11 +1,10 @@
 import { Command } from "commander";
-import { getStagedLinesChanged, gitCommit, hasStagedChanges } from "../utils/git.js";
 import { getRandomDadLine } from "../lines/dad.js";
 import { getRandomHypeLine } from "../lines/hype.js";
 import { speak } from "../voice/speak.js";
 import { printBanner, printReaction } from "../ui/banner.js";
 
-function getReaction(linesChanged: number): { line: string; mood: "dad" | "hype" } {
+function getCommitReaction(linesChanged: number): { line: string; mood: "dad" | "hype" } {
   if (linesChanged === 0) {
     return { line: getRandomDadLine(), mood: "dad" };
   }
@@ -21,29 +20,16 @@ function getReaction(linesChanged: number): { line: string; mood: "dad" | "hype"
   return { line: "ABSOLUTE LEGEND. I'M SO PROUD OF YOU.", mood: "hype" };
 }
 
-export const commitCommand = new Command("commit")
-  .description("Commit your code. Dad has opinions.")
-  .requiredOption("-m, --message <message>", "Commit message")
+export const reactCommand = new Command("react")
+  .description("React to an event (used by git hooks)")
+  .option("--lines <number>", "Lines changed", "0")
+  .option("--trigger <type>", "What triggered this", "commit")
   .action((opts) => {
+    const linesChanged = parseInt(opts.lines, 10) || 0;
+
     printBanner();
 
-    if (!hasStagedChanges()) {
-      console.log("  No staged changes. Stage some files first (git add).\n");
-      process.exit(1);
-    }
-
-    const linesChanged = getStagedLinesChanged();
-
-    try {
-      gitCommit(opts.message);
-    } catch {
-      const line = getRandomDadLine();
-      printReaction(line, "dad");
-      speak(line, "dad");
-      process.exit(1);
-    }
-
-    const { line, mood } = getReaction(linesChanged);
+    const { line, mood } = getCommitReaction(linesChanged);
     printReaction(line, mood);
     if (linesChanged > 0) {
       console.log(`  (${linesChanged} lines changed)\n`);

@@ -6,6 +6,7 @@ import { dadLines } from "../lines/dad.js";
 import { hypeLines } from "../lines/hype.js";
 import { sayMac } from "./mac.js";
 import { sayFallback } from "./fallback.js";
+import { loadConfig } from "../config.js";
 
 let silent = false;
 
@@ -35,6 +36,9 @@ function playMp3(filePath: string): void {
 
 export function speak(text: string, mood: "dad" | "hype"): void {
   if (silent) return;
+
+  const config = loadConfig();
+  if (config.muted) return;
 
   const audioDir = findAudioDir();
   if (audioDir) {

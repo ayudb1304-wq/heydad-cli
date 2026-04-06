@@ -4,17 +4,15 @@ import { detectTestRunner } from "../utils/detect.js";
 import { getRandomDadLine } from "../lines/dad.js";
 import { getRandomHypeLine } from "../lines/hype.js";
 import { speak } from "../voice/speak.js";
-
-function colorize(text: string, color: "red" | "green"): string {
-  const codes = { red: "\x1b[31m", green: "\x1b[32m" };
-  return `${codes[color]}${text}\x1b[0m`;
-}
+import { printBanner, printReaction } from "../ui/banner.js";
 
 export const testCommand = new Command("test")
   .description("Run your tests. Dad is watching.")
   .option("--cmd <command>", "Custom test command")
   .action(async (opts) => {
     let command: string;
+
+    printBanner();
 
     if (opts.cmd) {
       command = opts.cmd;
@@ -27,10 +25,10 @@ export const testCommand = new Command("test")
         process.exit(1);
       }
       command = detected.command;
-      console.log(`Detected ${detected.label} project`);
+      console.log(`  Detected ${detected.label} project`);
     }
 
-    console.log(`\nRunning: ${command}\n`);
+    console.log(`  Running: ${command}\n`);
 
     const child = spawn(command, {
       stdio: "inherit",
@@ -39,15 +37,13 @@ export const testCommand = new Command("test")
     });
 
     child.on("close", (code) => {
-      console.log(); // blank line after test output
-
       if (code === 0) {
         const line = getRandomHypeLine();
-        console.log(colorize(`  ${line}`, "green"));
+        printReaction(line, "hype");
         speak(line, "hype");
       } else {
         const line = getRandomDadLine();
-        console.log(colorize(`  ${line}`, "red"));
+        printReaction(line, "dad");
         speak(line, "dad");
       }
 

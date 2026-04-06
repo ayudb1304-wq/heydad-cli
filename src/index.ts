@@ -1,9 +1,12 @@
 import { program } from "commander";
 import { testCommand } from "./commands/test.js";
 import { commitCommand } from "./commands/commit.js";
+import { muteCommand, unmuteCommand } from "./commands/mute.js";
+import { initCommand } from "./commands/init.js";
+import { reactCommand } from "./commands/react.js";
 import { setSilent } from "./voice/speak.js";
 
-const version = "0.1.0";
+const version = "0.1.1";
 
 program
   .name("heydad")
@@ -19,5 +22,9 @@ program
 
 program.addCommand(testCommand);
 program.addCommand(commitCommand);
+program.addCommand(muteCommand);
+program.addCommand(unmuteCommand);
+program.addCommand(initCommand);
+program.addCommand(reactCommand);
 
 program.parse();
