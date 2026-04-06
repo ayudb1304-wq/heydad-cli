@@ -1,6 +1,6 @@
 {
   "name": "heydad",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Your terminal has feelings now",
   "type": "module",
   "bin": {
