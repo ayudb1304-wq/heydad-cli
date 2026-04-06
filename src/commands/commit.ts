@@ -1,25 +1,9 @@
 import { Command } from "commander";
 import { getStagedLinesChanged, gitCommit, hasStagedChanges } from "../utils/git.js";
-import { getRandomDadLine } from "../lines/dad.js";
-import { getRandomHypeLine } from "../lines/hype.js";
+import { loadConfig } from "../config.js";
+import { getVoiceLines } from "../lines/index.js";
 import { speak } from "../voice/speak.js";
 import { printBanner, printReaction } from "../ui/banner.js";
-
-function getReaction(linesChanged: number): { line: string; mood: "dad" | "hype" } {
-  if (linesChanged === 0) {
-    return { line: getRandomDadLine(), mood: "dad" };
-  }
-  if (linesChanged < 10) {
-    return { line: "Nice. Keep it up.", mood: "hype" };
-  }
-  if (linesChanged < 50) {
-    return { line: getRandomHypeLine(), mood: "hype" };
-  }
-  if (linesChanged < 200) {
-    return { line: "LETS GOOOOO! " + getRandomHypeLine(), mood: "hype" };
-  }
-  return { line: "ABSOLUTE LEGEND. I'M SO PROUD OF YOU.", mood: "hype" };
-}
 
 export const commitCommand = new Command("commit")
   .description("Commit your code. Dad has opinions.")
@@ -33,17 +17,38 @@ export const commitCommand = new Command("commit")
     }
 
     const linesChanged = getStagedLinesChanged();
+    const config = loadConfig();
+    const voice = getVoiceLines(config.voice);
 
     try {
       gitCommit(opts.message);
     } catch {
-      const line = getRandomDadLine();
+      const line = voice.getRandomDadLine();
       printReaction(line, "dad");
       speak(line, "dad");
       process.exit(1);
     }
 
-    const { line, mood } = getReaction(linesChanged);
+    let line: string;
+    let mood: "dad" | "hype";
+
+    if (linesChanged === 0) {
+      line = voice.getRandomDadLine();
+      mood = "dad";
+    } else if (linesChanged < 10) {
+      line = "Nice. Keep it up.";
+      mood = "hype";
+    } else if (linesChanged < 50) {
+      line = voice.getRandomHypeLine();
+      mood = "hype";
+    } else if (linesChanged < 200) {
+      line = "LETS GOOOOO! " + voice.getRandomHypeLine();
+      mood = "hype";
+    } else {
+      line = "ABSOLUTE LEGEND. I'M SO PROUD OF YOU.";
+      mood = "hype";
+    }
+
     printReaction(line, mood);
     if (linesChanged > 0) {
       console.log(`  (${linesChanged} lines changed)\n`);

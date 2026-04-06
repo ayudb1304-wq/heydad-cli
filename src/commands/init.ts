@@ -4,6 +4,13 @@ import { join } from "node:path";
 import { execSync } from "node:child_process";
 import { printBanner } from "../ui/banner.js";
 
+// TODO: Generate welcome audio clips when ElevenLabs credits refresh
+// const WELCOME_LINES = [
+//   "Right, I'm moving in. Don't worry, I won't take up much space. Just your terminal. And your self-esteem.",
+//   "Consider this your terminal adoption papers. I'm your dad now. No refunds.",
+//   "You could have installed prettier. You could have installed eslint. But no. You installed a dad. Respect.",
+// ];
+
 const HOOK_MARKER = "# heydad-hook";
 
 const POST_COMMIT_HOOK = `#!/bin/sh

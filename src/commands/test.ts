@@ -1,8 +1,8 @@
 import { Command } from "commander";
 import { spawn } from "node:child_process";
 import { detectTestRunner } from "../utils/detect.js";
-import { getRandomDadLine } from "../lines/dad.js";
-import { getRandomHypeLine } from "../lines/hype.js";
+import { loadConfig } from "../config.js";
+import { getVoiceLines } from "../lines/index.js";
 import { speak } from "../voice/speak.js";
 import { printBanner, printReaction } from "../ui/banner.js";
 
@@ -37,12 +37,15 @@ export const testCommand = new Command("test")
     });
 
     child.on("close", (code) => {
+      const config = loadConfig();
+      const voice = getVoiceLines(config.voice);
+
       if (code === 0) {
-        const line = getRandomHypeLine();
+        const line = voice.getRandomHypeLine();
         printReaction(line, "hype");
         speak(line, "hype");
       } else {
-        const line = getRandomDadLine();
+        const line = voice.getRandomDadLine();
         printReaction(line, "dad");
         speak(line, "dad");
       }
