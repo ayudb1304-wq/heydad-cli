@@ -3,8 +3,6 @@ import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { getVoiceLines } from "../lines/index.js";
-import { sayMac } from "./mac.js";
-import { sayFallback } from "./fallback.js";
 import { loadConfig } from "../config.js";
 
 let silent = false;
@@ -47,15 +45,7 @@ export function speak(text: string, mood: "dad" | "hype"): void {
       const file = join(audioDir, subDir, `${String(idx + 1).padStart(2, "0")}.mp3`);
       if (existsSync(file)) {
         playMp3(file);
-        return;
       }
     }
-  }
-
-  // Fallback: macOS say or text
-  if (process.platform === "darwin") {
-    sayMac(text, mood);
-  } else {
-    sayFallback(text, mood);
   }
 }
