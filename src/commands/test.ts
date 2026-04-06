@@ -22,7 +22,7 @@ export const testCommand = new Command("test")
       const detected = detectTestRunner();
       if (!detected) {
         console.error(
-          "Couldn't figure out your test command. Use: dad test --cmd \"your command\""
+          "Couldn't figure out your test command. Use: heydad test --cmd \"your command\""
         );
         process.exit(1);
       }

@@ -2,27 +2,29 @@
 
 **Your terminal has feelings now.**
 
-A CLI that roasts you like a disappointed dad when your code fails, and hypes you up like a proud dad when it passes.
+A CLI that roasts you like a disappointed Irish dad when your code fails, and hypes you up like a proud dad when it passes. With real voice acting.
 
 <!-- TODO: Replace with actual demo GIF -->
 <!-- ![demo](assets/demo.gif) -->
 
 ```
-$ dad test
+$ heydad test
 Running: npm test
 
   FAIL  src/auth.test.ts
 
-😞  I'm not mad. I'm just disappointed.
+😞  I spent thirty years working the farm so you could go to university
+    and write code that doesn't even compile. Thirty. Years.
 ```
 
 ```
-$ dad test
+$ heydad test
 Running: npm test
 
   PASS  src/auth.test.ts
 
-🎉  LETS GOOOOO! THAT'S MY BOY!
+🎉  JAYSUS CHRIST ON A BICYCLE! GREEN ACROSS THE BOARD!
+    I'M SO PROUD I MIGHT ACTUALLY CRY AND I HAVEN'T CRIED SINCE ITALIA '90!
 ```
 
 ## Install
@@ -39,25 +41,25 @@ npx heydad test
 
 ## Commands
 
-### `dad test`
+### `heydad test`
 
 Runs your tests. Dad reacts based on the result.
 
 ```bash
-dad test                    # Auto-detects your test runner
-dad test --cmd "pytest"     # Custom test command
-dad test --cmd "cargo test" # Works with any language
+heydad test                    # Auto-detects your test runner
+heydad test --cmd "pytest"     # Custom test command
+heydad test --cmd "cargo test" # Works with any language
 ```
 
 Auto-detects: **npm**, **pytest**, **cargo**, **go test**, **make test**
 
-### `dad commit`
+### `heydad commit`
 
 Commits your code. Dad reacts based on the diff size.
 
 ```bash
-dad commit -m "fix typo"           # Small commit → calm praise
-dad commit -m "refactored auth"    # Big commit → ABSOLUTE LEGEND
+heydad commit -m "fix typo"           # Small commit → calm praise
+heydad commit -m "refactored auth"    # Big commit → ABSOLUTE LEGEND
 ```
 
 | Lines Changed | Dad's Energy |
@@ -70,18 +72,18 @@ dad commit -m "refactored auth"    # Big commit → ABSOLUTE LEGEND
 ### Global Options
 
 ```bash
-dad --silent test    # No voice, just text
-dad --version        # Show version
+heydad --silent test    # No voice, just text
+heydad --version        # Show version
 ```
 
 ## Voice
 
-On macOS, dad **talks to you** using the built-in `say` command. No dependencies needed.
+Ships with **40 AI-generated voice clips** featuring a disappointed Irish dad and a hype Irish dad.
 
-- **Disappointment:** Slow, somber Daniel voice
-- **Hype:** Fast, excited Alex voice
+- **Test fails** → Disappointed Irish dad guilt-trips you
+- **Test passes** → Irish dad loses his mind with pride
 
-On other platforms, you get emoji reactions in the terminal.
+Falls back to text + emoji on systems without audio support.
 
 ## Why?
 

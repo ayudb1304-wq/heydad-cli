@@ -4,7 +4,7 @@
   "description": "Your terminal has feelings now",
   "type": "module",
   "bin": {
-    "dad": "./dist/index.js"
+    "heydad": "dist/index.js"
   },
   "scripts": {
     "build": "tsup",

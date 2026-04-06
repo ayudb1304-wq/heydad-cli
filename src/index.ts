@@ -6,7 +6,7 @@ import { setSilent } from "./voice/speak.js";
 const version = "0.1.0";
 
 program
-  .name("dad")
+  .name("heydad")
   .description("Your terminal has feelings now")
   .version(version)
   .option("--silent", "Suppress voice output")
