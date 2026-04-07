@@ -12,9 +12,8 @@ export const voiceCommand = new Command("voice")
   .description("Switch voice packs")
   .argument("[pack]", "Voice pack to switch to")
   .action((pack?: string) => {
-    printBanner();
-
     const config = loadConfig();
+    printBanner(config.pro);
 
     if (!pack) {
       // List available packs

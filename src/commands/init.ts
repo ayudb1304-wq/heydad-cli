@@ -3,6 +3,7 @@ import { existsSync, writeFileSync, chmodSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { execSync } from "node:child_process";
 import { printBanner } from "../ui/banner.js";
+import { loadConfig } from "../config.js";
 
 // TODO: Generate welcome audio clips when ElevenLabs credits refresh
 // const WELCOME_LINES = [
@@ -28,7 +29,7 @@ fi
 export const initCommand = new Command("init")
   .description("Install git hooks. Dad is always watching now.")
   .action(() => {
-    printBanner();
+    printBanner(loadConfig().pro);
 
     // Check we're in a git repo
     try {

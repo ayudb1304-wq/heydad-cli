@@ -13,7 +13,7 @@ export const reactCommand = new Command("react")
     const config = loadConfig();
     const voice = getVoiceLines(config.voice);
 
-    printBanner();
+    printBanner(config.pro);
 
     let line: string;
     let mood: "dad" | "hype";

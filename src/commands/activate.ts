@@ -3,14 +3,14 @@ import { loadConfig, saveConfig } from "../config.js";
 import { printBanner } from "../ui/banner.js";
 import { hostname } from "node:os";
 
-const DODO_API = "https://live.dodopayments.com";
+const DODO_API = "https://test.dodopayments.com";
 const PRODUCT_ID = "pdt_0Nc8gQhIoOESkdNGoFnfT";
 
 export const activateCommand = new Command("activate")
   .description("Activate heydad Pro with your license key")
   .argument("<key>", "Your license key")
   .action(async (key: string) => {
-    printBanner();
+    printBanner(loadConfig().pro);
 
     const instanceName = `heydad-${hostname()}`;
 
@@ -61,9 +61,8 @@ export const activateCommand = new Command("activate")
 export const deactivateCommand = new Command("deactivate")
   .description("Deactivate heydad Pro on this machine")
   .action(async () => {
-    printBanner();
-
     const config = loadConfig();
+    printBanner(config.pro);
 
     if (!config.pro || !config.license_key) {
       console.log("  No active license found.\n");

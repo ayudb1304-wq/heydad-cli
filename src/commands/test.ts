@@ -14,7 +14,7 @@ export const testCommand = new Command("test")
   .action(async (opts) => {
     let command: string;
 
-    printBanner();
+    printBanner(loadConfig().pro);
     checkFirstRun();
 
     if (opts.cmd) {

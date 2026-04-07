@@ -7,7 +7,7 @@ const GREEN = "\x1b[32m";
 const YELLOW = "\x1b[33m";
 const RESET = "\x1b[0m";
 
-const CHECKOUT_URL = "https://checkout.dodopayments.com/buy/pdt_0Nc8gQhIoOESkdNGoFnfT";
+const CHECKOUT_URL = "https://test.checkout.dodopayments.com/buy/pdt_0Nc8gQhIoOESkdNGoFnfT?quantity=1&redirect_url=https://www.npmjs.com/package/heydad";
 
 export function checkGrandmaMoment(streak: number, pro: boolean): void {
   if (streak !== 10) return;

@@ -10,7 +10,7 @@ export const commitCommand = new Command("commit")
   .description("Commit your code. Dad has opinions.")
   .requiredOption("-m, --message <message>", "Commit message")
   .action((opts) => {
-    printBanner();
+    printBanner(loadConfig().pro);
     checkFirstRun();
 
     if (!hasStagedChanges()) {

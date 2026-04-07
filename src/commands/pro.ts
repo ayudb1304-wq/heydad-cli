@@ -2,7 +2,7 @@ import { Command } from "commander";
 import { loadConfig } from "../config.js";
 import { printBanner } from "../ui/banner.js";
 
-const CHECKOUT_URL = "https://checkout.dodopayments.com/buy/pdt_0Nc8gQhIoOESkdNGoFnfT";
+const CHECKOUT_URL = "https://test.checkout.dodopayments.com/buy/pdt_0Nc8gQhIoOESkdNGoFnfT?quantity=1&redirect_url=https://www.npmjs.com/package/heydad";
 
 const GREEN = "\x1b[32m";
 const DIM = "\x1b[2m";
@@ -23,9 +23,8 @@ function printEnterpriseTier(): void {
 export const proCommand = new Command("pro")
   .description("Show Pro status or upgrade")
   .action(() => {
-    printBanner();
-
     const config = loadConfig();
+    printBanner(config.pro);
 
     if (config.pro) {
       console.log(`  ${GREEN}${BOLD}heydad Pro${RESET} ${GREEN}— ACTIVE${RESET}\n`);
