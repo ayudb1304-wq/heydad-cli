@@ -15,7 +15,7 @@ export const testCommand = new Command("test")
     let command: string;
 
     printBanner(loadConfig().pro);
-    checkFirstRun();
+    const isFirstRun = checkFirstRun();
 
     if (opts.cmd) {
       command = opts.cmd;
@@ -50,8 +50,8 @@ export const testCommand = new Command("test")
         const { text: line, index } = voice.getRandomHypeLine(config.pro);
         printReaction(line, "hype");
 
-        const grandmaPlayed = checkGrandmaMoment(config.streak, config.pro);
-        if (!grandmaPlayed) {
+        const momentPlayed = isFirstRun || checkGrandmaMoment(config.streak, config.pro);
+        if (!momentPlayed) {
           speak(line, "hype", index);
         }
         checkStreakPromo(config.streak);
@@ -61,7 +61,9 @@ export const testCommand = new Command("test")
 
         const { text: line, index } = voice.getRandomDadLine(config.pro);
         printReaction(line, "dad");
-        speak(line, "dad", index);
+        if (!isFirstRun) {
+          speak(line, "dad", index);
+        }
       }
 
       process.exit(code ?? 1);

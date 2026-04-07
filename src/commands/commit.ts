@@ -12,7 +12,7 @@ export const commitCommand = new Command("commit")
   .requiredOption("-m, --message <message>", "Commit message")
   .action((opts) => {
     printBanner(loadConfig().pro);
-    checkFirstRun();
+    const isFirstRun = checkFirstRun();
 
     if (!hasStagedChanges()) {
       console.log("  No staged changes. Stage some files first (git add).\n");
@@ -53,8 +53,8 @@ export const commitCommand = new Command("commit")
       console.log(`  (${linesChanged} lines changed)\n`);
     }
 
-    const dadCried = checkDadCriesMoment(linesChanged, config.pro);
-    if (!dadCried) {
+    const momentPlayed = isFirstRun || checkDadCriesMoment(linesChanged, config.pro);
+    if (!momentPlayed) {
       speak(line, mood, lineIndex);
     }
     checkBigCommitPromo(linesChanged);
