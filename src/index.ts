@@ -9,7 +9,7 @@ import { proCommand } from "./commands/pro.js";
 import { voiceCommand } from "./commands/voice.js";
 import { setSilent } from "./voice/speak.js";
 
-const version = "0.2.0";
+const version = "0.3.1";
 
 program
   .name("heydad")

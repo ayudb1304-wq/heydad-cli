@@ -17,19 +17,26 @@ export const reactCommand = new Command("react")
 
     let line: string;
     let mood: "dad" | "hype";
+    let lineIndex: number | undefined;
 
     if (linesChanged === 0) {
-      line = voice.getRandomDadLine();
+      const pick = voice.getRandomDadLine(config.pro);
+      line = pick.text;
       mood = "dad";
+      lineIndex = pick.index;
     } else if (linesChanged < 10) {
       line = "Nice. Keep it up.";
       mood = "hype";
     } else if (linesChanged < 50) {
-      line = voice.getRandomHypeLine();
+      const pick = voice.getRandomHypeLine(config.pro);
+      line = pick.text;
       mood = "hype";
+      lineIndex = pick.index;
     } else if (linesChanged < 200) {
-      line = "LETS GOOOOO! " + voice.getRandomHypeLine();
+      const pick = voice.getRandomHypeLine(config.pro);
+      line = "LETS GOOOOO! " + pick.text;
       mood = "hype";
+      lineIndex = pick.index;
     } else {
       line = "ABSOLUTE LEGEND. I'M SO PROUD OF YOU.";
       mood = "hype";
@@ -39,5 +46,5 @@ export const reactCommand = new Command("react")
     if (linesChanged > 0) {
       console.log(`  (${linesChanged} lines changed)\n`);
     }
-    speak(line, mood);
+    speak(line, mood, lineIndex);
   });
