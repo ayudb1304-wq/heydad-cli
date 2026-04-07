@@ -5,6 +5,7 @@ import { getVoiceLines } from "../lines/index.js";
 import { speak } from "../voice/speak.js";
 import { printBanner, printReaction } from "../ui/banner.js";
 import { checkFirstRun, checkBigCommitPromo } from "../moments/upsells.js";
+import { checkDadCriesMoment } from "../moments/dad-cries.js";
 
 export const commitCommand = new Command("commit")
   .description("Commit your code. Dad has opinions.")
@@ -51,7 +52,10 @@ export const commitCommand = new Command("commit")
     if (linesChanged > 0) {
       console.log(`  (${linesChanged} lines changed)\n`);
     }
-    speak(line, mood, lineIndex);
 
+    const dadCried = checkDadCriesMoment(linesChanged, config.pro);
+    if (!dadCried) {
+      speak(line, mood, lineIndex);
+    }
     checkBigCommitPromo(linesChanged);
   });

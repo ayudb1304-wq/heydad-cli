@@ -49,10 +49,12 @@ export const testCommand = new Command("test")
 
         const { text: line, index } = voice.getRandomHypeLine(config.pro);
         printReaction(line, "hype");
-        speak(line, "hype", index);
 
+        const grandmaPlayed = checkGrandmaMoment(config.streak, config.pro);
+        if (!grandmaPlayed) {
+          speak(line, "hype", index);
+        }
         checkStreakPromo(config.streak);
-        checkGrandmaMoment(config.streak, config.pro);
       } else {
         config.streak = 0;
         saveConfig(config);

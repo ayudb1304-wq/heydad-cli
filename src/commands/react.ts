@@ -3,6 +3,7 @@ import { loadConfig } from "../config.js";
 import { getVoiceLines } from "../lines/index.js";
 import { speak } from "../voice/speak.js";
 import { printBanner, printReaction } from "../ui/banner.js";
+import { checkDadCriesMoment } from "../moments/dad-cries.js";
 
 export const reactCommand = new Command("react")
   .description("React to an event (used by git hooks)")
@@ -35,5 +36,9 @@ export const reactCommand = new Command("react")
     if (linesChanged > 0) {
       console.log(`  (${linesChanged} lines changed)\n`);
     }
-    speak(line, mood, lineIndex);
+
+    const dadCried = checkDadCriesMoment(linesChanged, config.pro);
+    if (!dadCried) {
+      speak(line, mood, lineIndex);
+    }
   });

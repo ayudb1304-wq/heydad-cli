@@ -9,8 +9,8 @@ const RESET = "\x1b[0m";
 
 const CHECKOUT_URL = "https://test.checkout.dodopayments.com/buy/pdt_0Nc8gQhIoOESkdNGoFnfT?quantity=1&redirect_url=https://www.npmjs.com/package/heydad";
 
-export function checkGrandmaMoment(streak: number, pro: boolean): void {
-  if (streak !== 10) return;
+export function checkGrandmaMoment(streak: number, pro: boolean): boolean {
+  if (streak !== 10) return false;
 
   if (pro) {
     console.log(`\n  ${YELLOW}${BOLD}INCOMING CALL FROM GRANDMA...${RESET}\n`);
@@ -25,9 +25,11 @@ export function checkGrandmaMoment(streak: number, pro: boolean): void {
     if (audioDir) {
       playFile(join(audioDir, "moments", "grandma-call.mp3"));
     }
+    return true;
   } else {
     console.log(`\n  ${YELLOW}${BOLD}that's 10 in a row.${RESET}`);
     console.log(`  ${DIM}dad wants to call grandma and brag about you.${RESET}`);
     console.log(`  ${DIM}hear the call -> heydad pro${RESET}\n`);
+    return true;
   }
 }
