@@ -17,7 +17,7 @@ export function checkFirstRun(): void {
 export function checkStreakPromo(streak: number): void {
   if (isPro()) return;
   if (streak === 5) {
-    console.log(`  ${DIM}dad is feeling generous. $5 for Pro this week -> heydad pro${RESET}\n`);
+    console.log(`  ${DIM}dad is feeling generous. grab Pro -> heydad pro${RESET}\n`);
   }
 }
 

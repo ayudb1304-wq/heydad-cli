@@ -59,38 +59,53 @@ Commits your code. Dad reacts based on the diff size.
 
 ```bash
 heydad commit -m "fix typo"           # Small commit → calm praise
-heydad commit -m "refactored auth"    # Big commit → ABSOLUTE LEGEND
+heydad commit -m "refactored auth"    # Big commit → dad literally cries
 ```
 
-| Lines Changed | Dad's Energy |
-|---|---|
-| < 10 | "Nice. Keep it up." |
-| 10-50 | Random hype line |
-| 50-200 | HYPE MODE |
-| 200+ | "ABSOLUTE LEGEND. I'M SO PROUD OF YOU." |
+### `heydad init`
 
-### Global Options
+Install git hooks. Dad reacts to every commit automatically.
 
 ```bash
-heydad --silent test    # No voice, just text
-heydad --version        # Show version
+heydad init     # Dad is always watching now
+heydad mute     # Silence audio (text stays)
+heydad unmute   # Dad's back
 ```
 
-## Voice
+## Voice Packs
 
-Ships with **40 AI-generated voice clips** featuring a disappointed Irish dad and a hype Irish dad.
+Ships with **80+ AI-generated voice clips** across multiple characters.
 
-- **Test fails** → Disappointed Irish dad guilt-trips you
-- **Test passes** → Irish dad loses his mind with pride
+| Pack | Clips | Tier |
+|---|---|---|
+| Irish Dad (default) | 40 | Free (10 lines) / Pro (all 20) |
+| Optimus Prime | 40 | Pro |
+| More coming... | | Pro |
 
-### Voice Packs
+Switch packs: `heydad voice <pack>`
 
-| Pack | Tier |
-|---|---|
-| Irish Dad (default) | Free |
-| Optimus Prime | Pro ($7) |
+## heydad Pro
 
-Switch packs with `heydad voice <pack>`. Run `heydad pro` to upgrade.
+- 20 Irish Dad lines (free gets 10)
+- Optimus Prime voice pack
+- Dad calls grandma at 10-streak to brag about you
+- Dad literally cries on 200+ line commits
+- All future voice packs included
+- Dad's eternal approval
+
+```bash
+heydad pro                    # See what you're missing
+heydad activate <your-key>    # After purchase
+```
+
+## Get a full refund
+
+Post a demo of heydad on X, TikTok, or Reels.
+
+- Video hits **5k views** → 50% refund
+- Video hits **25k views** → full refund + every future pack free
+
+No LinkedIn. No Threads. Only platforms where the joke lives. Tag **@heydad** so we can find you.
 
 ## Why?
 

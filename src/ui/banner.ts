@@ -36,7 +36,7 @@ const UPSELL_LINES = [
   "pro users hear dad open the good whiskey. you get the cheap stuff.",
   "grandma wants to hear about your test results. she's waiting.",
   "you're only getting half the guilt. dad is holding back. for now.",
-  "Optimus Prime, grandma calls, 10 extra roasts. $9. less than your coffee.",
+  "Optimus Prime, grandma calls, 10 extra roasts. less than your coffee.",
   "dad's got 10 lines he's saving for pro users. they're devastating.",
 ];
 

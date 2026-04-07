@@ -30,12 +30,13 @@ export const proCommand = new Command("pro")
       console.log(`  ${GREEN}${BOLD}heydad Pro${RESET} ${GREEN}— ACTIVE${RESET}\n`);
       console.log(`  ${GREEN}✓${RESET} All 20 Irish Dad lines (disappointed + hype)`);
       console.log(`  ${GREEN}✓${RESET} Grandma calls at 10-streak`);
+      console.log(`  ${GREEN}✓${RESET} Dad literally cries on 200+ line commits`);
       console.log(`  ${GREEN}✓${RESET} Premium voice packs (Optimus Prime + more coming)`);
       console.log(`  ${GREEN}✓${RESET} All future content included`);
       console.log(`  ${GREEN}✓${RESET} Dad's eternal approval\n`);
       console.log(`  ${DIM}Run 'heydad deactivate' to remove license from this machine.${RESET}\n`);
     } else {
-      console.log(`  ${BOLD}heydad Pro${RESET} — $9 one-time ${DIM}($5 with code IRISHDAD — first 500 only)${RESET}\n`);
+      console.log(`  ${BOLD}heydad Pro${RESET} — $9 one-time\n`);
       console.log(`  ${DIM}✗${RESET} 10 more Irish Dad lines (disappointed + hype)`);
       console.log(`  ${DIM}✗${RESET} Grandma calls at 10-streak`);
       console.log(`  ${DIM}✗${RESET} Premium voice packs (Optimus Prime + more coming)`);
