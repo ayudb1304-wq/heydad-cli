@@ -1,3 +1,5 @@
+import type { LinePick } from "./dad.js";
+
 export const optimusDadLines = [
   "I have witnessed the fall of Cybertron. And yet, somehow, this code disappoints me more.",
   "You were the chosen one. The one who would bring balance to the codebase. And instead, you have brought only red.",
@@ -44,10 +46,13 @@ export const optimusHypeLines = [
   "Fate rarely calls upon us at a moment of our choosing. But today it called upon you, and you DELIVERED!",
 ];
 
-export function getRandomOptimusDadLine(): string {
-  return optimusDadLines[Math.floor(Math.random() * optimusDadLines.length)];
+// Optimus is a pro-only pack, so all lines are accessible (pro param ignored)
+export function getRandomOptimusDadLine(_pro: boolean): LinePick {
+  const index = Math.floor(Math.random() * optimusDadLines.length);
+  return { text: optimusDadLines[index], index };
 }
 
-export function getRandomOptimusHypeLine(): string {
-  return optimusHypeLines[Math.floor(Math.random() * optimusHypeLines.length)];
+export function getRandomOptimusHypeLine(_pro: boolean): LinePick {
+  const index = Math.floor(Math.random() * optimusHypeLines.length);
+  return { text: optimusHypeLines[index], index };
 }

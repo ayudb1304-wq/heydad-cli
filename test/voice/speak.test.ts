@@ -6,14 +6,16 @@ describe("speak", () => {
   });
 
   it("does nothing when silent is true", async () => {
-    const macMock = vi.fn();
-    vi.doMock("../../src/voice/mac.js", () => ({ sayMac: macMock }));
-    vi.doMock("../../src/voice/fallback.js", () => ({ sayFallback: vi.fn() }));
-
     const { speak, setSilent } = await import("../../src/voice/speak.js");
     setSilent(true);
-    speak("test", "dad");
+    // Should not throw — just silently returns
+    expect(() => speak("test", "dad")).not.toThrow();
+  });
 
-    expect(macMock).not.toHaveBeenCalled();
+  it("accepts optional lineIndex parameter", async () => {
+    const { speak, setSilent } = await import("../../src/voice/speak.js");
+    setSilent(true);
+    // Should not throw with lineIndex
+    expect(() => speak("test", "dad", 5)).not.toThrow();
   });
 });

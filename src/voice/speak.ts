@@ -11,7 +11,7 @@ export function setSilent(value: boolean): void {
   silent = value;
 }
 
-function findAudioDir(): string | null {
+export function findAudioDir(): string | null {
   const distDir = dirname(fileURLToPath(import.meta.url));
   const packageRoot = join(distDir, "..");
   const audioDir = join(packageRoot, "assets", "audio");
@@ -28,7 +28,16 @@ function playMp3(filePath: string): void {
   child.unref();
 }
 
-export function speak(text: string, mood: "dad" | "hype"): void {
+export function playFile(filePath: string): void {
+  if (silent) return;
+  const config = loadConfig();
+  if (config.muted) return;
+  if (existsSync(filePath)) {
+    playMp3(filePath);
+  }
+}
+
+export function speak(text: string, mood: "dad" | "hype", lineIndex?: number): void {
   if (silent) return;
 
   const config = loadConfig();
@@ -40,7 +49,7 @@ export function speak(text: string, mood: "dad" | "hype"): void {
   if (audioDir) {
     const lines = mood === "dad" ? voiceLines.dadLines : voiceLines.hypeLines;
     const subDir = mood === "dad" ? voiceLines.audioDadDir : voiceLines.audioHypeDir;
-    const idx = lines.indexOf(text);
+    const idx = lineIndex ?? lines.indexOf(text);
     if (idx !== -1) {
       const file = join(audioDir, subDir, `${String(idx + 1).padStart(2, "0")}.mp3`);
       if (existsSync(file)) {

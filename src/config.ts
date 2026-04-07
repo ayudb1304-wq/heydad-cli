@@ -15,6 +15,8 @@ export interface HeydadConfig {
   license_instance?: string;
   pro: boolean;
   voice: VoicePack;
+  streak: number;
+  firstRun: boolean;
 }
 
 const CONFIG_PATH = join(homedir(), ".heydadrc.json");
@@ -23,6 +25,8 @@ const DEFAULTS: HeydadConfig = {
   muted: false,
   pro: false,
   voice: "irish-dad",
+  streak: 0,
+  firstRun: true,
 };
 
 export function loadConfig(): HeydadConfig {

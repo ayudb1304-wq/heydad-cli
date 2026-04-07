@@ -1,13 +1,16 @@
 import type { VoicePack } from "../config.js";
-import { dadLines, getRandomDadLine } from "./dad.js";
-import { hypeLines, getRandomHypeLine } from "./hype.js";
+import type { LinePick } from "./dad.js";
+import { dadLineTexts, getRandomDadLine } from "./dad.js";
+import { hypeLineTexts, getRandomHypeLine } from "./hype.js";
 import { optimusDadLines, optimusHypeLines, getRandomOptimusDadLine, getRandomOptimusHypeLine } from "./optimus-dad.js";
+
+export type { LinePick } from "./dad.js";
 
 export interface VoiceLines {
   dadLines: string[];
   hypeLines: string[];
-  getRandomDadLine: () => string;
-  getRandomHypeLine: () => string;
+  getRandomDadLine: (pro: boolean) => LinePick;
+  getRandomHypeLine: (pro: boolean) => LinePick;
   audioDadDir: string;
   audioHypeDir: string;
 }
@@ -26,8 +29,8 @@ export function getVoiceLines(voice: VoicePack): VoiceLines {
     case "irish-dad":
     default:
       return {
-        dadLines,
-        hypeLines,
+        dadLines: dadLineTexts,
+        hypeLines: hypeLineTexts,
         getRandomDadLine,
         getRandomHypeLine,
         audioDadDir: "dad",
