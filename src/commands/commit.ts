@@ -40,22 +40,11 @@ export const commitCommand = new Command("commit")
       line = pick.text;
       mood = "dad";
       lineIndex = pick.index;
-    } else if (linesChanged < 10) {
-      line = "Nice. Keep it up.";
-      mood = "hype";
-    } else if (linesChanged < 50) {
+    } else {
       const pick = voice.getRandomHypeLine(config.pro);
       line = pick.text;
       mood = "hype";
       lineIndex = pick.index;
-    } else if (linesChanged < 200) {
-      const pick = voice.getRandomHypeLine(config.pro);
-      line = "LETS GOOOOO! " + pick.text;
-      mood = "hype";
-      lineIndex = pick.index;
-    } else {
-      line = "ABSOLUTE LEGEND. I'M SO PROUD OF YOU.";
-      mood = "hype";
     }
 
     printReaction(line, mood);
