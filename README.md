@@ -83,7 +83,14 @@ Ships with **40 AI-generated voice clips** featuring a disappointed Irish dad an
 - **Test fails** → Disappointed Irish dad guilt-trips you
 - **Test passes** → Irish dad loses his mind with pride
 
-Falls back to text + emoji on systems without audio support.
+### Voice Packs
+
+| Pack | Tier |
+|---|---|
+| Irish Dad (default) | Free |
+| Optimus Prime | Pro ($7) |
+
+Switch packs with `heydad voice <pack>`. Run `heydad pro` to upgrade.
 
 ## Why?
 
